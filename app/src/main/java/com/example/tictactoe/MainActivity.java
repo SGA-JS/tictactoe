@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView message;
     private boolean gameEnds;
     private int round;
-    private boolean isComputer;
+    private boolean isComputerMode;
 
     private String player1symbol = "X";
     private String player2symbol = "O";
@@ -57,7 +57,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Configuration config = getResources().getConfiguration();
+        // Retrieve the information passed from Home activity
+        Intent intent = getIntent();
+        isComputerMode = intent.getBooleanExtra("isComputer", false);
+
+        // Other initialization code
+
+
+
+    Configuration config = getResources().getConfiguration();
         // Initialize the matrix based on size
         //  if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
         if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -210,9 +218,15 @@ public class MainActivity extends AppCompatActivity {
                 playerTurn = 2;
                 message.setText("Player2 turn 'O'");
 
-                if (isComputer) {
+                if (isComputerMode) {
                     message.setText("Computer turn 'O'");
                     computerMove();
+
+                    winner = checkWinner();
+                    if(winner ==2){
+                        message.setText("Computer wins 'O'");
+                        gameEnds =true;
+                    }
                 }
 
             } else {
@@ -224,6 +238,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //computer move
+    public void onComputerMoveButtonClicked(View view) {
+        if (!gameEnds && isComputerMode && playerTurn == 2) {
+            // If it's the computer's turn and computer mode is enabled
+            computerMove();
+        }
+    }
+
     private void computerMove() {
         // Loop until we find an empty cell
         while (true) {
@@ -237,7 +258,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        // After the computer's move, switch to player 1's turn
+        playerTurn = 1;
+        message.setText("Player1 turn 'X'");
     }
+
 
     //0 - no winner, 1 - player 1 is the winner, 2 - player 2 is the winner
     private int checkWinner() {
