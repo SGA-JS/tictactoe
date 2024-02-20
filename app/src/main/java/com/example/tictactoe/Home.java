@@ -10,18 +10,26 @@ import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
+    private boolean isComputer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
     }
 
-    public void startNewGame(View view) {
+    public void btn_playermode(View view) {
+        isComputer = false;
         Intent myIntent = new Intent(this, MainActivity.class);
-        // Switch to the AnotherActivity
+        myIntent.putExtra("isComputer", isComputer);
         startActivity(myIntent);
-
-        Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show();
-        Log.i("appinfo", "The user clicked the button");
     }
+
+    public void onComputerMoveButtonClicked(View view) {
+        isComputer = true;
+        Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.putExtra("isComputer", isComputer);
+        startActivity(myIntent);
+    }
+
 }
