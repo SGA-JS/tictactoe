@@ -22,26 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private String player2symbol = "O";
 
 
-    //    @Override
-//    protected void onNewIntent(Intent intent) {
-//        super.onNewIntent(intent);
-//        resetGameState();
-//    }
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            // Reset the game state when switching back to portrait mode
-            resetGameState();
-        }
-//        else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            // Optionally handle landscape mode configuration if needed
- //         resetGameState();
-//        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         message = findViewById(R.id.message);
         //reset button
         Button buttonReset = findViewById(R.id.button_reset);
+        initializeMatrix();
+        //reset al
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,36 +43,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         isComputerMode = intent.getBooleanExtra("isComputer", false);
 
-        // Other initialization code
-
-
-
-    Configuration config = getResources().getConfiguration();
-        // Initialize the matrix based on size
-        //  if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-        if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            cells = new Matrix(3);
-            round = 0;
-            playerTurn = 1;
-            gameEnds = false;
-            message.setText("Player1 turn 'X'");
-            //cells.resetMatrix();
-            resetButtontext();
-           // cells = new Matrix(cells.mSize);
-        } else {
-            cells = new Matrix(5);
-
-            round = 0;
-            playerTurn = 1;
-            gameEnds = false;
-            message.setText("Player1 turn 'X'");
-            //cells.resetMatrix();
-            resetButtontext();
-            //cells = new Matrix(cells.mSize);
-
-        }
-
-      //  resetGameState();
 
         if (savedInstanceState != null) {
             cells = (Matrix) savedInstanceState.getSerializable("CELLS");
@@ -104,6 +56,18 @@ public class MainActivity extends AppCompatActivity {
 //
 //            resetGameState();
 //        }
+    }
+
+    private void initializeMatrix() {
+        Configuration config = getResources().getConfiguration();
+        if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            cells = new Matrix(3);
+
+        } else {
+            cells = new Matrix(5);
+
+        }
+        resetGameState();
     }
 
     private void resetGameState() {
@@ -121,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void restoreButtonText() {
-        // use nested for loops to iterate over the cells and the buttons
+        // use nested for loops to the cells and the buttons
         for (int i = 0; i < cells.mSize; i++) {
             for (int j = 0; j < cells.mSize; j++) {
                 // get the value of the current cell
@@ -165,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void buttonClicked(View view) {
         Button button = (Button) view;
         if (button != null) {
             String buttonText = button.getText().toString();
             if (buttonText.equals("-")) {
-
                 if (!gameEnds) {
                     executeGame(view);
                 }
@@ -201,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         int totalround = cells.mSize * cells.mSize;
 
         if (winner == 1) {
-            message.setText("Player1  wins");
+            message.setText("Player1 'X' wins");
             gameEnds = true;
         } else if (winner == 2) {
             message.setText("Player2 'O' wins");
@@ -255,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 cells.set(row, col, 2);
                 Button button = findViewById(getResources().getIdentifier("button" + (row * cells.mSize + col + 1), "id", getPackageName()));
                 button.setText(player2symbol);
+                round++;
                 break;
             }
         }
@@ -278,33 +243,6 @@ public class MainActivity extends AppCompatActivity {
         //check for player 2
         return winner;
     }
-
-
-//    private boolean checkIfWinner(int playerNumber) {
-//        boolean win = false;
-//
-//        // Check rows and columns
-//        for (int i = 0; i < cells.mSize; i++) {
-//            boolean rowWin = true;
-//            boolean colWin = true;
-//            for (int j = 0; j < cells.mSize; j++) {
-//                rowWin &= (cells.get(i, j) == playerNumber);
-//                colWin &= (cells.get(j, i) == playerNumber);
-//            }
-//            win |= rowWin || colWin;
-//        }
-//
-//        // Check diagonals
-//        boolean diag1Win = true;
-//        boolean diag2Win = true;
-//        for (int i = 0; i < cells.mSize; i++) {
-//            diag1Win &= (cells.get(i, i) == playerNumber);
-//            diag2Win &= (cells.get(i, cells.mSize - 1 - i) == playerNumber);
-//        }
-//        win |= diag1Win || diag2Win;
-//
-//        return win;
-//    }
 
     private boolean checkIfWinner(int playerNumber) {
         boolean win = false;
