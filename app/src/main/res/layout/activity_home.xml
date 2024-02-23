@@ -22,39 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <Button-->
-<!--        android:id="@+id/mode1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|center"-->
-<!--        android:layout_marginTop="200dp"-->
-<!--        android:onClick="btn_computermode"-->
-<!--        android:paddingTop="10dp"-->
-<!--        android:paddingBottom="10dp"-->
-<!--        android:text="Computer (mode 1)"-->
-<!--        android:textSize="20dp"-->
-<!--        app:cornerRadius="0dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/mode2"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.461"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/mode2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|center"-->
-<!--        android:onClick="btn_playermode"-->
-<!--        android:paddingTop="10dp"-->
-<!--        android:paddingBottom="10dp"-->
-<!--        android:text="Second player (mode 2)"-->
-<!--        android:textSize="20dp"-->
-<!--        app:cornerRadius="0dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.496"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />
--->
 
     <!-- Button for Player Mode -->
     <Button
@@ -74,24 +41,6 @@
         android:layout_marginTop="16dp"
         android:onClick="onComputerMoveButtonClicked"
         android:text="Computer Mode" />
-
-<!--    <RadioGroup-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <RadioButton-->
-<!--            android:id="@+id/player_mode_radio_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:checked="true"-->
-<!--            android:text="Player Mode" />-->
-
-<!--        <RadioButton-->
-<!--            android:id="@+id/computer_mode_radio_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Computer Mode" />-->
-<!--    </RadioGroup>-->
 
 
 </LinearLayout>
