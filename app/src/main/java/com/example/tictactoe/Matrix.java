@@ -31,12 +31,12 @@ public class Matrix implements Serializable{
     }
 
     //this is to reset all the matrix
-    public void resetMatrix() {
-        for (int i = 0; i <mSize ; i++) {
-            for (int j = 0; j < mSize; j++) {
-                set(i, j, 0);
-            }
-        }
-    }
+//    public void resetMatrix() {
+//        for (int i = 0; i <mSize ; i++) {
+//            for (int j = 0; j < mSize; j++) {
+//                set(i, j, 0);
+//            }
+//        }
+//    }
 }
 
