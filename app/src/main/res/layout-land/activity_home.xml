@@ -23,15 +23,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/mode1"
+        android:id="@+id/btn_playermode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:onClick="startComputerMode"
+        android:onClick="btn_playermode"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Computer (mode 1)"
+        android:text="Player Mode"
         android:textSize="20dp"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toTopOf="@+id/mode2"
@@ -40,14 +40,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/mode2"
+        android:id="@+id/btn_computermode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="startNewGame"
+        android:layout_below="@id/btn_playermode"
+        android:onClick="onComputerMoveButtonClicked"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Second player (mode 2)"
+        android:text="Computer Mode"
         android:textSize="20dp"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
